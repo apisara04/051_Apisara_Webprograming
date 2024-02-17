@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Noto+Sans+Thai:wght@100..900&display=swap');
+*{
+    font-family: "Fredoka", sans-serif;
+    font-family: "Noto Sans Thai", sans-serif;
+}
+
+.background {
+    background-color: #FFC436; /* สีพื้นหลังสว่างและสดใส */
+  }
+  
+  .Exercise {
+    background-color: #4679b4; /* สีพื้นหลังสว่างและสดใส */
+  }
+  .navbar {
+    background-color: #FFC436; /* สี Navbar ที่สดใส */
+    color: white !important;
+  }
+  .white-text {
+    color: white;
+  }
+ .bg-head{
+    background-color: #FFC436; /* สี Navbar ที่สดใส */
+  }
+
+  .secord-background{
+    background-color: #40A2E3;
+    color: white;
+  }
+  .head-background{
+    background-color: #FFDD95;
+    color: rgb(0, 0, 0);
+  
+  }
+  .nav-link{
+    color: white;
+  }
+
+  .card-content:hover{
+    background-color: #DDF2FD;
+  }
+  /* ส่วน contact*/
+  .contact {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.left-margin {
+    margin-left: 20px; /* ปรับค่าตามต้องการ */
+}
+.card-img-top{
+  min-height: 250px;
+  max-height: 250px;
+  object-fit: cover;
+}
+
+.card-dsc{
+  height: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.pro-background{
+  background-color: #1D24CA;
+  color: white;
+}
+
+.works-background{
+  background-color: #7077A1;
+  color: white;
+}

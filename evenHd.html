@@ -1,83 +1,112 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Event Handler</title>
-  <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-    rel="stylesheet"
-    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-    crossorigin="anonymous"
-  />
-  <script
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-    crossorigin="anonymous"
-  ></script>
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      document.querySelector("form").onsubmit = function (event) {
-        event.preventDefault(); // Prevent form submission
-        
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ex.5 Check Form Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <style>
+      .paddingtop{
+        padding-top: 130px;
+      }
+      .name{
+        margin-bottom: 40px;
+      }
+      .error{
+        display: none;
+        color: red;
+      } 
+      @media (max-width: 768px) {
+        .image{
+          display: none;
+        }
+      }
+    </style>
+
+<script>
+  // เมื่อหน้าเว็บเพจถูก Load มาครบถ้วน
+  document.addEventListener("DOMContentLoaded", function () {
+    // เมื่อปุ่ม Submit ถูกกด
+    // document.querySelector("#loginForm").onsubmit() = function(){};
+    document
+      .querySelector("#loginform")
+      .addEventListener("submit", (event) => {
+        // อ่านค่าจาก textbox
         let username = document.querySelector("#username").value;
         let password = document.querySelector("#password").value;
-        let errorDiv = document.querySelector("#errorUsername");
-        let errorDivv = document.querySelector("#errorPassword");
-        
-        // Check username length
-        let checkusername = username.length >= 8;
-        if (!checkusername) {
-          errorDiv.innerHTML = "Username must be at least 8 characters long.";
-          return false; // Prevent form submission
+        // ประกาศตัวแปรเช็คความถูกต้อง ของ username และ password
+        let checkUsername = false;
+        let checkPassword = false;
+
+        alert("len username=" + username.length);
+        alert("len password=" + password.length);
+
+        erroeMsg = document.getElementsByClassName("error");
+
+        // check username
+        if (username.length >= 8) {
+          checkUsername = true;
+          erroeMsg[0].style.display = "none";
+        }else{
+          erroeMsg[0].style.display = "block";
         }
-    
-        // Check password length
-        let checkpassword = password.length >= 8;
-        if (!checkpassword) {
-          errorDivv.innerHTML = "Password must be at least 8 characters long.";
-          return false; // Prevent form submission
+        // check password
+        if (password.length >= 8) {
+          checkPassword = true;
+          erroeMsg[1].style.display = "none";
+        }else{
+          erroeMsg[1].style.display = "block";
         }
-    
-        // Clear error message if both username and password are valid
-        errorDiv.innerHTML = "";
-        errorDivv.innerHTML = "";
-    
-        // Allow form submission
-        alert("Form submitted successfully!");
-        return true;
-      };
-    });
-    </script>
-  <style>
-    .error {
-      color: red;
-    }
-    .main{
-          margin: 20px auto;
-          width: 600px;
-          border: 3px solid;    
-          padding: 30px;
-      }
-  </style>
-</head>
-<body>
-  <div class="main container-fluid">
-  <h1>Login</h1>
-  <form>
-    <div class="mb-3">
-      <label for="username" class="form-label">Username</label>
-      <input type="text" class="form-control" id="username" >
-      <p id="errorUsername" class="error"></p>
+
+        if (checkUsername && checkPassword) {
+          return true;
+        } else {
+          event.preventDefault();
+          return false;
+        }
+      });
+  });
+</script>
+
+  </head>
+  <body>
+    <div class="container">
+        <div class="row paddingtop">
+            <div class="col-sm-4  col-lg-6"> <img src="img/Login.jpg" class="img-fluid image" alt="Login"> </div>
+
+            <div class="col-sm-8 col-lg-6"><form id="loginform" method="post" action="https://www.youtube.com/">
+              <h1 class="name">Login Form</h1>
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Username</label>
+                  <input type="Username" class="form-control" id="username" aria-describedby="UsernameHelp">
+                  <div id="emailHelp" class="form-text">
+                    <p class="error">Username must be at least 8 characters.</p>
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label">Password</label>
+                  <input type="password" class="form-control" id="password">
+                  <div id="emailHelp" class="form-text">
+                    <p class="error">Password must be at least 8 characters.</p>
+                  </div>
+                </div>
+
+                <div class="mb-3 form-check">
+                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                  <label class="form-check-label" for="exampleCheck1">Remember Me</label>
+                </div>
+              
+                <button type="submit" class="btn btn-outline-secondary">Login</button>
+                <button type="reset" class="btn btn-outline-secondary">Cancel</button>
+
+              </form>
+            </div>
+        </div>
     </div>
-    <div class="mb-3">
-      <label for="password" class="form-label">Password</label>
-      <input type="password" class="form-control" id="password">
-      <p id="errorPassword" class="error"></p>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-    <button type="reset" class="btn btn-primary">Reset</button>
-  </form>
-</div>
-</body>
-</html>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  
+</body></html>
